@@ -56,32 +56,34 @@ function generatePassword() {
 
         var result = [];
         var potentialChars = []
-        var guaranteedCharacters = []
      
        if (inputs.conNumbers) {
-         potentialChars = potentialChars.concat(numericCharacters);
+         potentialChars = potentialChars.concat(numbers);
         //guaranteedCharacters.push
        } 
 
-       if (inputs.conLowercase){
-        potentialChars = potentialChars.concat(lowerCasedCharacters);     
+       if (inputs.conLowerCase){
+        potentialChars = potentialChars.concat(lowerCased);     
        }    
 
        if (inputs.conUpperCase){
-        potentialChars = potentialChars.concat(upperCasedCharacters);     
+        potentialChars = potentialChars.concat(upperCased);     
        }    
 
        if (inputs.conSpecial){
-        potentialChars = potentialChars.concat(specialCharacters);     
+        potentialChars = potentialChars.concat(special);     
        }    
 
        var randomizedArray = shuffle(potentialChars)
+
+       for (var i = 0; i < inputs.passwordLength; i++) {
+        result.push(randomizedArray[i])
+      }
+
+      return result.join("")
+
 }
 
-
-for (var i = 0; i < inputs.passwordLength; i++) {
-  result.push(randomizedArray[i])
-}
 
 function writePassword() {
   var password = generatePassword();
